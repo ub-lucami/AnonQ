@@ -1,9 +1,9 @@
 # Anonimizacija dogodkov z (hierarhično) k-anonimnostjo
 
-Ta skripta v Pythonu iz CSV datoteke z dogodki ustvari anonimiziran izvoz, ki dosega k-anonimnost na kombinaciji izbranih kvazi-identifikatorjev (npr. `generalized_event`, `week_number`, `weekday`, `time_period`).
+Skripta `anonQ_2.py` v Pythonu iz CSV datoteke z dogodki ustvari anonimiziran izvoz, ki dosega k-anonimnost na kombinaciji izbranih kvazi-identifikatorjev (npr. `generalized_event`, `week_number`, `weekday`, `time_period`).
 
 ## Ključne zmožnosti
-- **Klasifikacija dogodkov** iz podrobnih ID-jev v bolj splošne razrede (npr. `power_event`, `system_event`).
+- **Klasifikacija dogodkov** iz ID-jev v razrede (npr. `power_event`, `system_event`).
 - **Časovna generalizacija** (teden v letu, del dneva) in **kvantizacija ur** (npr. v 3-urne bloke).
 - **k-anonimnost** nad združenim atributom `anonymized_attribute`.
 - **Dva načina zmanjševanja tveganja razkritja**:
@@ -13,14 +13,14 @@ Ta skripta v Pythonu iz CSV datoteke z dogodki ustvari anonimiziran izvoz, ki do
 - Izvoz **anonimiziranega nabora**, **povzetka odstranitev po dogodkih** in **poročila o odstranjenih uporabnikih**.
 
 ## Vhodni podatki
-Pričakovani stolpci vhodne CSV datoteke (`;` delilnik):
+Pričakovani stolpci vhodne CSV datoteke (`;` separator):
 - `OD_ISO` – časovni žig v ISO formatu,
 - `GUID` – identifikator uporabnika/namestitve,
 - `dogodek` – izvorni identifikator dogodka.
 
 > Opomba: Dodatni stolpci niso nujni, a ostanejo vmesno v DataFrame in se pred izvozom počistijo.
 
-## Izhodni artefakti
+## Izhodne datoteke
 - `anonymized_events.csv` – anonimizirani podatki z ohranjenimi stolpci `GUID` + izbrani kvazi-identifikatorji.
 - `event_removal_report.csv` – primerjava števila unikatnih `GUID` na kombinacijo kvazi-identifikatorjev **pred** in **po** anonimizaciji (vključno s seštevki po prvem stolpcu `generalized_event`).
 - `user_removal_report_counts.csv` – število odstranjenih dogodkov po uporabniku (samo, če je do odstranjevanja uporabnikov prišlo).
@@ -49,7 +49,7 @@ Pričakovani stolpci vhodne CSV datoteke (`;` delilnik):
 
 ## Zagon
 ```bash
-python anonimacija.py
+python anonQ_2.py
 ```
 > Skripto lahko preimenujete poljubno; poskrbite, da poti do datotek v glavi skripte ustrezajo vaši strukturi.
 
