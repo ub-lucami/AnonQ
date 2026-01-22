@@ -1,26 +1,26 @@
-\# Anonimizacija dogodkov z (hierarhično) k-anonimnostjo
+# Anonimizacija dogodkov z (hierarhično) k-anonimnostjo
 
-Skripta `anonQ\_2.py` v Pythonu iz CSV datoteke z dogodki ustvari anonimiziran izvoz, ki dosega k-anonimnost na kombinaciji izbranih kvazi-identifikatorjev (npr. `generalized\_event`, `week\_number`, `weekday`, `time\_period`).
+Skripta `anonQ_2.py` v Pythonu iz CSV datoteke z dogodki ustvari anonimiziran izvoz, ki dosega k-anonimnost na kombinaciji izbranih kvazi-identifikatorjev (npr. `generalized_event`, `week_number`, `weekday`, `time_period`).
 
-\## Kratek povzetek delovanja skripte za anonimizacijo
+## Kratek povzetek delovanja skripte za anonimizacijo
 
-\*   Prebere CSV (delilnik `;`) z dogodki za vse \*\*GUID\*\* uporabnike v tabeli.
+*   Prebere CSV (delilnik `;`) z dogodki za vse **GUID** uporabnike v tabeli.
 
-\*   \*\*Časovna generalizacija\*\* iz ISO časovnih žigov generalizira datum (npr. teden v letu, del dneva) in kvantizira čas (npr. v 3-urne bloke). 
+*   **Časovna generalizacija** iz ISO časovnih žigov generalizira datum (npr. teden v letu, del dneva) in kvantizira čas (npr. v 3-urne bloke). 
 
-\* \*\*Klasifikacija dogodkov\*\* na osnovi slovarja preslika dogodke v razrede (npr. `power\_event`, `system\_event`);  `dogodek` → `generalized\_event`.
+* **Klasifikacija dogodkov** na osnovi slovarja preslika dogodke v razrede (npr. `power_event`, `system_event`);  `dogodek` → `generalized_event`.
 
-\*   Sestavi \*\*kvazi‑identifikator\*\* `anonymized\_attribute` kot konkatenacijo izbranih stolpcev (`generalized\_event`, `week\_number`, `weekday`, `time\_period`) in nad združenim atributom zagotovi \*\*k-anonimnost\*\*.
+*   Sestavi **kvazi‑identifikator** `anonymized_attribute` kot konkatenacijo izbranih stolpcev (`generalized_event`, `week_number`, `weekday`, `time_period`) in nad združenim atributom zagotovi **k-anonimnost**.
 
-&nbsp; \*   Najprej poskusi odpraviti kršitve k‑anonimnosti s \*\*hierarhičnim sploščenjem\*\* po enem od komponent kvazi-identifikatorja (privzeto `week\_number` → 100 za problematične skupine). 
+&nbsp; *   Najprej poskusi odpraviti kršitve k‑anonimnosti s **hierarhičnim sploščenjem** po enem od komponent kvazi-identifikatorja (privzeto `week_number` → 100 za problematične skupine). 
 
-&nbsp; \*   Če to ne zadošča, odstrani \*\*celotne skupine dogodkov\*\* (`REMOVE\_USERS=False`, privzeto) ali \*\*uporabnike\*\* (če `REMOVE\_USERS=True`).
+&nbsp; *   Če to ne zadošča, odstrani **celotne skupine dogodkov** (`REMOVE_USERS=False`, privzeto) ali **uporabnike** (če `REMOVE_USERS=True`).
 
-&nbsp; \*   Izpiše \*\*povzetek\*\* (št. uporabnikov/dogodkov prej in potem) ter poskrbi za izvoz \*\*anonimiziranega nabora\*\*, \*\*povzetka odstranitev po dogodkih\*\* in \*\*poročila o odstranjenih uporabnikih\*\*.:
+&nbsp; *   Izpiše **povzetek** (št. uporabnikov/dogodkov prej in potem) ter poskrbi za izvoz **anonimiziranega nabora**, **povzetka odstranitev po dogodkih** in **poročila o odstranjenih uporabnikih**.:
 
-&nbsp;     \*   `anonymized\_events.csv`,
+&nbsp;     *   `anonymized_events.csv`,
 
-&nbsp;     \*   `event\_removal\_report.csv`,
+&nbsp;     *   `event_removal_report.csv`,
 # Anonimizacija dogodkov z (hierarhično) k-anonimnostjo
 
 Skripta `anonQ_2.py` v Pythonu iz CSV datoteke z dogodki ustvari anonimiziran izvoz, ki dosega k-anonimnost na kombinaciji izbranih kvazi-identifikatorjev (npr. `generalized_event`, `week_number`, `weekday`, `time_period`).
