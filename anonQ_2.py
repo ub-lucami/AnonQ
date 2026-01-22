@@ -144,7 +144,7 @@ df = df.rename(columns={'dogodek': 'event'})
 
 # Function to check k-anonymity
 def check_k_anonymity(df, k):
-    grouped = df.groupby(['anonymized_attribute']).agg({'GUID': pd.Series.nunique}).reset_index()
+    grouped = df.groupby('anonymized_attribute').agg({'GUID': pd.Series.nunique}).reset_index()
     return (grouped['GUID'] >= k).all()
 
 # Function to maximize data retention while achieving k-anonymity by removing violating users
@@ -152,7 +152,7 @@ def maximize_data_retention(df, k):
     removed_users = set()
     while not check_k_anonymity(df, k):
         # Find the anonymized attribute causing k-anonymity violation
-        grouped = df.groupby(['anonymized_attribute']).agg({'GUID': pd.Series.nunique}).reset_index()
+        grouped = df.groupby('anonymized_attribute').agg({'GUID': pd.Series.nunique}).reset_index()
         violating_attribute = grouped[grouped['GUID'] < k].iloc[0]['anonymized_attribute']
         
         # Find the user causing the violation and drop their event
@@ -167,7 +167,7 @@ def maximize_data_retention(df, k):
 #     while not check_k_anonymity(df, k):
 #         i+=1
 #         # Find the anonymized attribute causing k-anonymity violation
-#         grouped = df.groupby(['anonymized_attribute']).agg({'GUID': pd.Series.nunique}).reset_index()
+#         grouped = df.groupby('anonymized_attribute').agg({'GUID': pd.Series.nunique}).reset_index()
 #         violating_attribute = grouped[grouped['GUID'] < k].iloc[0]['anonymized_attribute']
 #         # Find the event causing the violation and drop it
 #         violating_events = df[df['anonymized_attribute'] == violating_attribute]
